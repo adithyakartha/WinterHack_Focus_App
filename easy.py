@@ -441,7 +441,7 @@ class ScreenFive(Screen):
             mytext = self.ids.o1.text  
             mytext = 'you have set reminder, '+mytext
             myobj = gTTS(text=mytext, lang='en', slow=False)
-            file = 'temp1.mp3'
+            file = 'data/sound/temp1.mp3'
             myobj.save(file)
             pygame.mixer.music.load(file)
             pygame.mixer.music.play()
@@ -450,7 +450,7 @@ class ScreenFive(Screen):
         if self.ids.o2.text:
             mytext = self.ids.o2.text  
             myobj = gTTS(text=mytext, lang='en', slow=False)
-            file = 'temp2.mp3'
+            file = 'data/sound/temp2.mp3'
             myobj.save(file)
             pygame.mixer.music.load(file)
             pygame.mixer.music.play()
@@ -459,7 +459,7 @@ class ScreenFive(Screen):
         if self.ids.o3.text:
             mytext = self.ids.o3.text  
             myobj = gTTS(text=mytext, lang='en', slow=False)
-            file = 'temp3.mp3'
+            file = 'data/sound/temp3.mp3'
             myobj.save(file)
             pygame.mixer.music.load(file)
             pygame.mixer.music.play()
@@ -468,7 +468,7 @@ class ScreenFive(Screen):
         if self.ids.o4.text:
             mytext = self.ids.o4.text  
             myobj = gTTS(text=mytext, lang='en', slow=False)
-            file = 'temp4.mp3'
+            file = 'data/sound/temp4.mp3'
             myobj.save(file)
             pygame.mixer.music.load(file)
             pygame.mixer.music.play()
