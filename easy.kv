@@ -80,61 +80,6 @@
                     text: "Signup"
                     on_release: root.manager.current = "screen2"
 
-# screen_OTP : OTP
-<OTP>:
-
-    canvas.before:
-        Rectangle:
-            pos: self.pos
-            size: self.size
-            source: 'bg.png'
-    
-    BoxLayout:
-        orientation: "vertical"
-        spacing: 20
-        padding: 20
-        
-        MLabel:
-            text: 'OTP : Enter OTP sent to mail'
-        
-        BoxLayout:
-            orientation: "horizontal"
-            spacing: 20
-            padding: 20
-        
-            MLabel:
-                text: 'OTP : '
-                size_hint: 0.2,1
-                
-            TextInput:
-                id: otp
-                hint_text: 'Enter OTP'
-                halign: "center"
-                valign: "center"
-                size_hint: 0.8,1
-        
-        MLabel:
-            id : serror
-            text: root.serror
-        
-        BoxLayout:
-            orientation: "horizontal"
-            spacing: 20
-            padding: 20
-
-            MButton:
-                text: "Confirm"
-                on_release: root.confirm()
-                        
-            MButton:
-                text: "back"
-                on_release: root.manager.current = "screen0"
-                size_hint: 1,.5
-        
-        MLabel:
-            id : shint
-            text: root.shint
- 
 # screen_OTPS : OTPS     # for sign in
 <OTPS>:
     
@@ -796,12 +741,6 @@
     ScreenEight:
         id: screen_nine
         name: "screen9"
-        manager: screen_manager
-    
-    # screen_OTP : OTP
-    OTP:
-        id: screen_OTP
-        name: "OTP"
         manager: screen_manager
     
     # screen_OTPS : OTPS

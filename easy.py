@@ -45,114 +45,6 @@ import pygame
 pygame.init()
 pygame.mixer.init()
 
-class OTP(Screen):
-    
-    serror = StringProperty()
-    shint = StringProperty()
-    count = 3
-    # snext = 'screen0'
-    
-    def on_pre_enter(self, *args):
-        
-        global email
-        
-        # if admin : bypass otp
-        if email == 'admin':
-            #email = 'admin'
-            self.manager.current = 'screen3'
-            return
-        
-    
-    def on_enter(self, *args):
-        
-        global email
-        
-        # generate OTP
-        self.otp = ''
-        for i in range(6):
-            self.otp+=str(randint(0, 9))                # simple AES
-        
-        try:        
-
-            # senting otp as mail
-            '''
-            port = 587  # For starttls
-            smtp_server = "smtp.gmail.com"               # Server
-            sender_email = "focusapp@zohomail.in"   # program mail
-            receiver_email = email
-            password = "focusapp"                       # program mail password
-            
-            message = """Subject: OTP for image encryption/decryption
-            
-            Your OTP is """ + str(self.otp)
-            '''
-            
-            sender = 'focusapp@zohomail.in'
-            recipient = email
-            
-            # Create message
-            msg = MIMEText("Message text" + str(self.otp))
-            msg['Subject'] = "OTP for Focus App"
-            msg['From'] = sender
-            msg['To'] = recipient
-            
-            # Create server object with SSL option
-            server = smtplib.SMTP_SSL('smtp.zoho.in', 465)
-            
-            # Perform operations via server
-            server.login('focusapp@zohomail.in', 'FOCUS@123')
-            server.sendmail(sender, [recipient], msg.as_string())
-            server.quit()
-            
-            '''
-            context = ssl.create_default_context()
-            with smtplib.SMTP(smtp_server, port) as server:
-                server.ehlo()  # Can be omitted
-                server.starttls(context=context)
-                server.ehlo()  # Can be omitted
-                server.login(sender_email, password)
-                server.sendmail(sender_email, receiver_email, message)
-                '''
-        
-        except :
-
-            self.serror = "No Internet Connection."
-        
-        return
-    
-    def confirm(self):
-        
-        if self.ids.otp.text != self.otp:
-            
-            self.count-=1
-            self.serror = str(self.count)+" Attempts left."
-            
-            if self.count < 1:
-                
-                self.serror += "Exiting..."
-
-                # self.snext = 'screen0'
-                self.manager.current = 'screen0'
-            
-            return
-        
-        # self.snext = 'screen3'
-        self.manager.current = 'screen3'
-        
-        return
-    
-    def on_pre_leave(self, *args):
-
-        # resetting
-        self.ids.otp.text = ''
-        self.serror = ''
-        self.shint = ''
-        self.count = 3
-
-        # self.snext = 'screen0'
-        
-        return
-
 class OTPS(Screen):
     
     serror = StringProperty()
@@ -197,8 +89,11 @@ class OTPS(Screen):
             # Create server object with SSL option
             server = smtplib.SMTP_SSL('smtp.zoho.in', 465)
             
+            with open('datafile.fkc','r') as f:
+                _ = f.read().split()
+            
             # Perform operations via server
-            server.login('focusapp@zohomail.in', 'FOCUS@123')
+            server.login(_[0], _[1])
             server.sendmail(sender, [recipient], msg.as_string())
             server.quit()
         
